@@ -1,15 +1,37 @@
-import React from "react";
+// src/App.jsx
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./Layouts/Layout";
 
+// Pages
+import Login from "./pages/auth/Login";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+
 function App() {
-  return (
-    <Layout>
-      <h2 className="text-2xl font-semibold text-gray-800 mb-4">Welcome!</h2>
-      <p className="text-gray-600">
-        This is your dashboard layout built with React + Tailwind + Vite.
-      </p>
-    </Layout>
-  );
+	const isAuthenticated = true; // change to false to test
+
+	return (
+		<Router>
+			<Routes>
+				{/* AUTH PAGES — visible only when NOT logged in */}
+				<Route
+					path="/login"
+					element={
+						!isAuthenticated ? <Login /> : <Navigate to="/" replace />
+					}
+				/>
+				
+
+				{/* DASHBOARD PAGES — visible only when logged in */}
+				{isAuthenticated ? (
+					<Route element={<Layout />}>
+						<Route path="/" element={<AdminDashboard />} />
+					</Route>
+				) : (
+					<Route path="*" element={<Navigate to="/login" replace />} />
+				)}
+			</Routes>
+		</Router>
+	);
 }
 
 export default App;

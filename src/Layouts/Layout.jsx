@@ -1,21 +1,24 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Header from "../Components/Header";
 import Sidebar from "../Components/Sidebar";
+import { Outlet } from "react-router-dom";
 
-const Layout = ({ children }) => {
-  const [open, setOpen] = useState(false);
+const Layout = () => {
+	const [open, setOpen] = useState(false);
 
-  const toggleSidebar = () => setOpen(!open);
+	const toggleSidebar = () => setOpen(!open);
 
-  return (
-    <div className="min-h-screen flex bg-gray-50">
-      <Sidebar open={open} />
-      <div className="flex-1 flex flex-col">
-        <Header toggleSidebar={toggleSidebar} />
-        <main className="p-6">{children}</main>
-      </div>
-    </div>
-  );
+	return (
+		<div className="min-h-screen flex bg-gray-50">
+			<Sidebar open={open} />
+			<div className="flex-1 flex flex-col">
+				<Header toggleSidebar={toggleSidebar} />
+				<main className="p-6">
+					<Outlet /> 
+				</main>
+			</div>
+		</div>
+	);
 };
 
 export default Layout;
