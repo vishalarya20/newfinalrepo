@@ -97,7 +97,7 @@ function RingGroups() {
             {/* Header */}
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
                 <div>
-                    <h2 className="text-2xl font-semibold text-gray-800">
+                    <h2 className="text-2xl font-semibold text-gray-800 mb-2">
                         Ring Groups
                     </h2>
                     <p className="text-sm text-gray-600">

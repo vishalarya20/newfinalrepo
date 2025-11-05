@@ -29,16 +29,16 @@ const coreFunctions = [
 	{ name: "Activity Logs", icon: Activity, url: "/logs/activity" },
 	{ name: "User Profile", icon: UserCircle, url: "/user/profile/1" },
 	{ name: "Ring Groups", icon: Layers, url: "/groups/ring" },
-	{ name: "Notifications", icon: Bell },
+	{ name: "Notifications", icon: Bell, url: "/notifications" },
 ];
 
 const adminFunctions = [
-	{ name: "Tenant Management", icon: Building2 },
-	{ name: "Master Rate Deck", icon: FileText },
+	{ name: "Tenant Management", icon: Building2, url: "/manage/tenant" },
+	{ name: "Master Rate Deck", icon: FileText , url: "/rate-deck/master"},
 	{ name: "Trunk Management", icon: Database },
-	{ name: "Topup History", icon: CreditCard },
-	{ name: "User & Roles", icon: UserCog },
-	{ name: "Infrastructure", icon: Server },
+	{ name: "Topup History", icon: CreditCard , url: "/history/top-up"},
+	{ name: "User & Roles", icon: UserCog , url: "/manage/user/role"},
+	{ name: "Infrastructure", icon: Server , url: "/infrastructure"},
 ];
 
 const Sidebar = ({ open }) => {
