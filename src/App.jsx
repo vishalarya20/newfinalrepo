@@ -3,16 +3,16 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./Layouts/Layout";
 
 // Pages
-import Login from "./Pages/auth/Login";
-import AdminDashboard from "./Pages/AdminDashboard";
-import LiveCalls from "./Pages/LiveCalls"
-import Reports from "./Pages/Reports";
-import Numbers from "./Pages/Numbers";
-import Extensions from "./Pages/Extensions"
-import BlockNumbers from "./Pages/BlockNumbers";
-import ActivityLogs from "./Pages/ActivityLogs";
-import UserProfile from "./Pages/UserProfile";
-import RingGroups from "./Pages/RingGroups";
+import Login from "./pages/auth/Login";
+import AdminDashboard from "./pages/AdminDashboard";
+import LiveCalls from "./pages/LiveCalls"
+import Reports from "./pages/Reports";
+import Numbers from "./pages/Numbers";
+import Extensions from "./pages/Extensions"
+import BlockNumbers from "./pages/BlockNumbers";
+import ActivityLogs from "./pages/ActivityLogs";
+import UserProfile from "./pages/UserProfile";
+import RingGroups from "./pages/RingGroups";
 
 function App() {
 	return (
