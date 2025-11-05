@@ -34,11 +34,11 @@ const coreFunctions = [
 
 const adminFunctions = [
 	{ name: "Tenant Management", icon: Building2, url: "/manage/tenant" },
-	{ name: "Master Rate Deck", icon: FileText , url: "/rate-deck/master"},
-	{ name: "Trunk Management", icon: Database },
-	{ name: "Topup History", icon: CreditCard , url: "/history/top-up"},
-	{ name: "User & Roles", icon: UserCog , url: "/manage/user/role"},
-	{ name: "Infrastructure", icon: Server , url: "/infrastructure"},
+	{ name: "Master Rate Deck", icon: FileText, url: "/rate-deck/master" },
+	{ name: "Trunk Management", icon: Database, url: "/manage/trunk" },
+	{ name: "Topup History", icon: CreditCard, url: "/history/top-up" },
+	{ name: "User & Roles", icon: UserCog, url: "/manage/user/role" },
+	{ name: "Infrastructure", icon: Server, url: "/infrastructure" },
 ];
 
 const Sidebar = ({ open }) => {

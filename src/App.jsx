@@ -19,7 +19,7 @@ import MasterRateDeck from "./Pages/MasterRateDeck"
 import TopUpHistory from "./Pages/TopUpHistory"
 import UserRoleManagement from "./Pages/UserRoleManagement";
 import Infrastructure from "./Pages/Infrastructure"
-
+import TrunkManagement from "./Pages/TrunkManagement";
 function App() {
 	return (
 		<Router>
@@ -40,9 +40,10 @@ function App() {
 					<Route path="/groups/ring" element={<RingGroups />} />
 					<Route path="/notifications" element={<Notifications />} />
 					<Route path="/manage/tenant" element={<TenantManagement />} />
+					<Route path="/manage/trunk" element={<TrunkManagement />} />
+					<Route path="/manage/user/role" element={<UserRoleManagement />} />
 					<Route path="/rate-deck/master" element={<MasterRateDeck />} />
 					<Route path="/history/top-up" element={<TopUpHistory />} />
-					<Route path="/manage/user/role" element={<UserRoleManagement />} />
 					<Route path="/infrastructure" element={<Infrastructure />} />
 				</Route>
 			</Routes>
