@@ -20,6 +20,7 @@ import TopUpHistory from "./Pages/TopUpHistory"
 import UserRoleManagement from "./Pages/UserRoleManagement";
 import Infrastructure from "./Pages/Infrastructure"
 import TrunkManagement from "./Pages/TrunkManagement";
+import UeserSettings from "./Pages/UserSettings";
 function App() {
 	return (
 		<Router>
@@ -45,6 +46,7 @@ function App() {
 					<Route path="/rate-deck/master" element={<MasterRateDeck />} />
 					<Route path="/history/top-up" element={<TopUpHistory />} />
 					<Route path="/infrastructure" element={<Infrastructure />} />
+					<Route path="/settings" element={<UeserSettings />} />
 				</Route>
 			</Routes>
 		</Router>

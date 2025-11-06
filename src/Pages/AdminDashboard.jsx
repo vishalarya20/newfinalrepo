@@ -7,7 +7,7 @@ import {
 	Users,
 	Download,
 	Info,
-	AlertCircle 
+	AlertCircle
 } from "lucide-react";
 
 import {
@@ -42,7 +42,9 @@ const AdminDashboard = () => {
 		{ name: "Other", value: 16 },
 	];
 
-	const COLORS = ["#3b82f6", "#22d3ee", "#8b5cf6", "#f59e0b"];
+
+	const COLORS = ["#3b82f6", "#06b6d4", "#8b5cf6", "#f59e0b"];
+
 
 	// Explicit color map for Tailwind (avoids dynamic class issues)
 	const colorMap = {
@@ -329,50 +331,87 @@ const AdminDashboard = () => {
 			{/* Charts Section */}
 			<div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 				{/* Line Chart */}
-				<div className="bg-white p-6 rounded-xl shadow-lg lg:col-span-2">
-					<h3 className="font-semibold text-gray-700 mb-1">
+				<div className="bg-white rounded-xl shadow p-6 border border-gray-100 lg:col-span-2">
+					<h3 className="text-gray-800 font-semibold mb-1">
 						Weekly Call Analytics
 					</h3>
-					<p className="text-xs text-gray-400 mb-4">
+					<p className="text-gray-500 text-sm mb-6">
 						Last 7 days performance overview
 					</p>
 
-					<ResponsiveContainer width="100%" height={260}>
+					<ResponsiveContainer width="100%" height={280}>
 						<LineChart data={weeklyData}>
 							<CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
 							<XAxis dataKey="day" stroke="#9ca3af" />
 							<YAxis stroke="#9ca3af" />
-							<Tooltip />
+							<Tooltip
+								contentStyle={{
+									backgroundColor: "#fff",
+									borderRadius: "8px",
+									border: "1px solid #e5e7eb",
+									boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
+								}}
+							/>
 							<Line
 								type="monotone"
 								dataKey="received"
 								stroke="#22c55e"
-								fill="#bbf7d0"
-								strokeWidth={2}
+								fill="url(#colorReceived)"
+								strokeWidth={2.5}
+								dot={{ r: 4 }}
+								activeDot={{ r: 6 }}
 							/>
 							<Line
 								type="monotone"
 								dataKey="missed"
 								stroke="#ef4444"
-								fill="#fecaca"
-								strokeWidth={2}
+								fill="url(#colorMissed)"
+								strokeWidth={2.5}
+								dot={{ r: 4 }}
+								activeDot={{ r: 6 }}
 							/>
+							<defs>
+								<linearGradient id="colorReceived" x1="0" y1="0" x2="0" y2="1">
+									<stop offset="5%" stopColor="#22c55e" stopOpacity={0.2} />
+									<stop offset="95%" stopColor="#22c55e" stopOpacity={0} />
+								</linearGradient>
+								<linearGradient id="colorMissed" x1="0" y1="0" x2="0" y2="1">
+									<stop offset="5%" stopColor="#ef4444" stopOpacity={0.2} />
+									<stop offset="95%" stopColor="#ef4444" stopOpacity={0} />
+								</linearGradient>
+							</defs>
 						</LineChart>
 					</ResponsiveContainer>
 
-					<div className="flex justify-between text-sm text-gray-600 mt-4">
-						<span>Total Calls: 678</span>
-						<span>Success Rate: 89.7%</span>
-						<span>Avg per Day: 97</span>
+					<div className="flex justify-between items-center mt-6 text-gray-700 text-sm">
+						<div className="flex items-center gap-2">
+							<span className="w-2.5 h-2.5 bg-blue-500 rounded-full"></span>
+							<span>Total Calls</span>
+						</div>
+						<div className="flex items-center gap-2">
+							<span className="w-2.5 h-2.5 bg-green-500 rounded-full"></span>
+							<span>Success Rate</span>
+						</div>
+						<div className="flex items-center gap-2">
+							<span className="w-2.5 h-2.5 bg-yellow-500 rounded-full"></span>
+							<span>Avg per Day</span>
+						</div>
+					</div>
+
+					<div className="flex justify-between mt-2 text-gray-800 font-semibold text-sm">
+						<span>678</span>
+						<span className="text-green-600">89.7%</span>
+						<span>97</span>
 					</div>
 				</div>
 
-				{/* Pie Chart */}
-				<div className="bg-white p-6 rounded-xl shadow-lg">
-					<h3 className="font-semibold text-gray-700 mb-4">
+				{/* Pie Chart - Calls by Destination */}
+				<div className="bg-white rounded-2xl shadow p-6 border border-gray-100 flex flex-col items-center">
+					<h3 className="text-gray-800 font-semibold mb-4 self-start">
 						Calls by Destination
 					</h3>
 
+					{/* Chart */}
 					<ResponsiveContainer width="100%" height={260}>
 						<PieChart>
 							<Pie
@@ -382,7 +421,9 @@ const AdminDashboard = () => {
 								cx="50%"
 								cy="50%"
 								outerRadius={80}
-								label
+								label={({ name, percent }) =>
+									`${name}: ${(percent * 100).toFixed(0)}%`
+								}
 							>
 								{pieData.map((entry, index) => (
 									<Cell
@@ -391,12 +432,48 @@ const AdminDashboard = () => {
 									/>
 								))}
 							</Pie>
-							<Tooltip />
-							<Legend />
+							<Tooltip
+								contentStyle={{
+									backgroundColor: "#fff",
+									borderRadius: "8px",
+									border: "1px solid #e5e7eb",
+									boxShadow: "0 2px 6px rgba(0,0,0,0.05)",
+								}}
+							/>
 						</PieChart>
 					</ResponsiveContainer>
+
+					{/* Custom Legend */}
+					<div className="mt-4 w-full">
+						<div className="grid grid-cols-2 gap-y-2 text-sm text-gray-700">
+							<div className="flex items-center gap-2">
+								<span className="w-3 h-3 bg-blue-600 rounded-full"></span>
+								<span>United States</span>
+							</div>
+							<div className="text-right text-gray-600">680 calls</div>
+
+							<div className="flex items-center gap-2">
+								<span className="w-3 h-3 bg-cyan-400 rounded-full"></span>
+								<span>Canada</span>
+							</div>
+							<div className="text-right text-gray-600">245 calls</div>
+
+							<div className="flex items-center gap-2">
+								<span className="w-3 h-3 bg-violet-500 rounded-full"></span>
+								<span>United Kingdom</span>
+							</div>
+							<div className="text-right text-gray-600">158 calls</div>
+
+							<div className="flex items-center gap-2">
+								<span className="w-3 h-3 bg-amber-400 rounded-full"></span>
+								<span>Other</span>
+							</div>
+							<div className="text-right text-gray-600">201 calls</div>
+						</div>
+					</div>
 				</div>
 			</div>
+
 
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-50 mt-6">
 				<div className="bg-white rounded-xl shadow-lg hover:shadow-sm transition-shadow duration-300 p-6 border border-gray-100">
